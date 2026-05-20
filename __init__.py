@@ -254,10 +254,6 @@ class Export_MD2(bpy.types.Operator, ExportHelper):  # B2.8
 
     check_extension = False  # 2.8 allow typing md2/mdx
 
-    def __init__(self):
-        self.properties.fStartFrame = bpy.context.scene.frame_start
-        self.properties.fEndFrame = bpy.context.scene.frame_end
-
     def execute(self, context):
         from .export_kp import Export_MD2_fn
         print("__execute__")
@@ -317,9 +313,8 @@ class Export_MD2(bpy.types.Operator, ExportHelper):  # B2.8
             self.report({'ERROR'}, "Please, select an object to export!")
             return {'CANCELLED'}
 
-        # if len(bpy.context.selected_objects) > 1:
-        #     self.report({'ERROR'}, "Please, select exactly one object to export!")
-        #     return {'CANCELLED'}
+        self.fStartFrame = context.scene.frame_start
+        self.fEndFrame = context.scene.frame_end
 
         wm = context.window_manager
         wm.fileselect_add(self)

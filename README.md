@@ -1,6 +1,6 @@
 # Blender Quake MDL2 Import / Export
 
-(Works with blender 2.93)
+(Works with Blender 5.1)
 
 This script is an importer and exporter for the Kingpin (and Quake) Model md2 and mdx.
 
@@ -59,3 +59,14 @@ notes:
 todo:
 
 - import. split model into mdx groups
+
+## Blender Version Notes
+
+**Blender 5.x / 2.8+:** `bpy.context.scene.objects.link()` was removed in Blender 2.8. The export helper that creates a temporary triangulated mesh now uses `bpy.context.collection.objects.link()`.
+
+## Credits
+
+- **hypov8** — primary author (md2/mdx merge, Blender 2.8 port)
+- DarkRain, Bob Holcomb, David Henry, Sebastian Lieberknecht, Dao Nguyen, Bernd Meyer, Damien Thebault, Erwan Mathieu, Takehiko Nawata — original contributors
+- **Rob Rohan** — github preservation, misc fixes
+- **Claude Sonnet** (Anthropic) — Blender 5.x compatibility fixes

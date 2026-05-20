@@ -912,7 +912,7 @@ def applyModifiers_fn(object):
     mesh = object.evaluated_get(depsgraph).to_mesh()  # 2.8
 
     modifiedObj = bpy.data.objects.new(mesh.name, mesh)
-    bpy.context.scene.objects.link(modifiedObj)
+    bpy.context.collection.objects.link(modifiedObj)
     object.modifiers.remove(modifier)
 
     return modifiedObj
@@ -927,10 +927,10 @@ def isObj_mesh_fn(objects):
 
 def Export_MD2_fn(self, filepath):
     '''    Export model    '''
-    ext = os.path.splitext(os.path.basename(filepath))[1]
-    if ext != '.md2' and ext != '.mdx':
-        raise RuntimeError("ERROR: File not md2 or mdx")
-        return False
+    ext = os.path.splitext(os.path.basename(filepath))[1].lower()
+    if ext not in ('.md2', '.mdx'):
+        filepath = bpy.path.ensure_ext(filepath, '.md2')
+        ext = '.md2'
 
     if ext == '.mdx':
         self.isMdx = True
