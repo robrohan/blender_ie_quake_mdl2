@@ -438,7 +438,7 @@ def load(self,
 
     """
 
-    ext = os.path.splitext(os.path.basename(filepath))[1]
+    ext = os.path.splitext(os.path.basename(filepath))[1].lower()
     if ext != '.md2' and ext != '.mdx':
         raise RuntimeError("ERROR: File not md2 or mdx")
         return False
